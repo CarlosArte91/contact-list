@@ -1,0 +1,33 @@
+thead {
+	width: auto;
+}
+
+tbody {
+	width: auto;
+}
+
+table {
+  border-collapse: collapse;
+  width: auto;
+	box-shadow: 0px 0px 20px #222222;
+	box-shadow: 0px 0px 20px #3e5866;
+
+  border: 1px solid rgba(0, 0, 0, 0.1);
+	border-radius: 10px;
+	overflow: hidden;
+}
+
+th {
+	width: auto;
+  background-color: #212121;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+tr {
+	width: auto;
+	margin: 0;
+	padding: 0;
+}
