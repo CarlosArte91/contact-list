@@ -1,9 +1,11 @@
-import "./contact_list.module.css";
+import styles from "./contact_list.module.css";
 import data from "../../../data/profiles";
 import { useEffect, useState } from "react";
 import ContactComponent from "../../pures/contact/contact_component";
 import Contact from "../../../entities/contact/contact.class";
 import NewContact from "../../forms/create_form/new_contact";
+import headers from "../../../data/headers";
+import state from "../../../entities/contact/states";
 
 function ContactList() {
 	const [users, setUsers] = useState([]);
@@ -32,19 +34,23 @@ function ContactList() {
 		setUsers(tempContact);
 	};
 
+	const changeState = (contact) => {
+		let tempContact = [...users];
+		const index = tempContact.indexOf(contact);
+
+		if (tempContact[index].state === state.CONNECTED) tempContact[index].state = state.DISCONNECTED;
+		else tempContact[index].state = state.CONNECTED;
+
+		setUsers(tempContact);
+	};
+
 	return (
-		<div>
+		<div className={styles.container}>
 			<h2>Contacts list</h2>
-			<table>
+			<table className={styles._table}>
 					<thead>
-						<tr>
-							<th>Avatar</th>
-							<th>Name</th>
-							<th>Last Name</th>
-							<th>Email</th>
-							<th>Phone</th>
-							<th>State</th>
-							<th>Actions</th>
+						<tr className={styles._tr}>
+							{ headers.map((header, index) => <th key={index} className={styles._th}>{header}</th>) }
 						</tr>
 					</thead>
 					<tbody>
@@ -53,6 +59,7 @@ function ContactList() {
 								key={index}
 								contact={user}
 								remove={deleteContact}
+								connect={changeState}
 							/>
 						)) : null }
 					</tbody>
